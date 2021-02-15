@@ -26,12 +26,6 @@
          th:errors="*{bestPrice}">best price</div>
     <br/>
 
-    <label for="customerEmail">Enter customer email </label>
-    <input type="text" th:field="*{customerEmail}" id="customerEmail"/>
-    <div style="color:red" th:if="${#fields.hasErrors('customerEmail')}"
-         th:errors="*{customerEmail}">customer email</div>
-    <br/>
-
     <br/>
     <input type="submit" value="Update!"/>
 </form>

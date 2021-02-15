@@ -9,7 +9,7 @@
 <p th:text="${comment.getText()}">text</p>
 
 <div sec:authorize="hasRole('ADMIN')">
-    <a th:href="@{/comment/edit/{commentId}(commentId=${comment.getId()})}">UPDATE comment</a>
+    <a th:href="@{/comment/edit/{commentId}(commentId=${comment.getId()})}">UPDATE COMMENT</a>
 
     <form th:method="DELETE" th:action="@{/comment/{commentId}(commentId=${comment.getId()})}">
         <input type="submit" value="delete"/>

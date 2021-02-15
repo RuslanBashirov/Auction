@@ -35,7 +35,7 @@ public class Painting {
     @Column(name = "image")
     private byte[] image;
 
-    @Min(value=500, message = "min price is 500")
+    @Min(value=500, message = "min price has to be bigger than 500")
     @Column(name = "best_price")
     private  int bestPrice;
 
@@ -103,7 +103,7 @@ public class Painting {
         return bestPrice;
     }
 
-    public void setBestPrice(int best_price) {
+    public void setBestPrice(int bestPrice) {
         this.bestPrice = bestPrice;
     }
 

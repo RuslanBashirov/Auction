@@ -14,20 +14,27 @@
 
 <p th:text="'HIGHEST OFFER ' + ${painting.getBestPrice()}"></p>
 
+<p>--------------Comments--------------------</p>
     <div th:each="comment:${commentList}">
+
         <a th:href="@{/comment/{commentId}/{paintingId}(commentId=${comment.getId()},
                 paintingId=${painting.getId()})}"
            th:text="${comment.getText()}">comment</a>
+
     </div>
+<p>-------------------------------------------</p>
 
 <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/painting/edit/{paintingId}(paintingId=${painting.getId()})}">UPDATE PAINTING</a>
-
-    <p><a th:href="@{/comment/new/{paintingId}(paintingId=${painting.getId()})}">add comment</a></p>
+        <p><a th:href="@{/comment/new/{paintingId}(paintingId=${painting.getId()})}">ADD COMMENT</a></p>
 
         <form th:method="DELETE" th:action="@{/painting/{paintingId}(paintingId=${painting.getId()})}">
             <input type="submit" value="delete"/>
         </form>
+</div>
+
+<div sec:authorize="hasRole('USER')">
+    <p><a th:href="@{/comment/new/{paintingId}(paintingId=${painting.getId()})}">ADD COMMENT</a></p>
 </div>
 
 </body>

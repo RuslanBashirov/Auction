@@ -66,6 +66,7 @@ public class PaintingController {
     public String editCertainPainting(Model model, @ModelAttribute("painting") Painting painting,
                        @PathVariable int paintingId){
         model.addAttribute("paintingId", paintingId);
+        model.addAttribute("currBestPrice", painting.getBestPrice());
         model.addAttribute("painting", painting);
         return "painting/edit";
     }

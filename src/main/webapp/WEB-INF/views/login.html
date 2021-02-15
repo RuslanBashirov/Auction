@@ -4,14 +4,17 @@
 
 <head>
     <title>Login</title>
+    <!--<link th:href="@{/resources/static/css/login.css}" rel="stylesheet" type="text/css" />-->
 </head>
 
 <body>
+<p>LOGIN FORM</p>
+
 <form th:action="@{/authenticateTheUser}"  method="post">
     <label for="username">Username</label>:
     <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
     <label for="password">Password</label>:
-    <input type="password" id="password" name="password" /> <br />
+    <input type="password" id="password" name="password" /> <br/>
     <input type="submit" value="Log in" />
 </form>
 

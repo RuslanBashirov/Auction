@@ -10,8 +10,8 @@
 <p th:text="${author.getEmail()}">text</p>
 
 <div sec:authorize="hasRole('ADMIN')">
-<a th:href="@{/author/edit/{authorId}(authorId=${authorId})}">update author</a>
-<a th:href="@{/painting/new/{authorId}(authorId=${authorId})}">create painting</a>
+<a th:href="@{/author/edit/{authorId}(authorId=${authorId})}">UPDATE AUTHOR</a>
+<a th:href="@{/painting/new/{authorId}(authorId=${authorId})}">CREATE PAINTING</a>
 
 <form th:method="DELETE" th:action="@{/author/{authorId}(authorId=${authorId})}">
     <input type="submit" value="delete"/>

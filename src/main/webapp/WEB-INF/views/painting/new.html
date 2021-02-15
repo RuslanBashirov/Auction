@@ -18,7 +18,7 @@
          th:errors="*{title}">first name error</div>
     <br/>
 
-    <label for="information">Enter inf </label>
+    <label for="information">Enter information </label>
     <input type="text" th:field="*{information}" id="information"/>
     <div style="color:red" th:if="${#fields.hasErrors('information')}"
          th:errors="*{information}">last name error</div>
@@ -30,10 +30,10 @@
          th:errors="*{bestPrice}">price starts from 500</div>
     <br/>
 
-    <label for="customerEmail">Enter customer email </label>
-    <input type="text" th:field="*{customerEmail}" id="customerEmail"/>
-    <div style="color:red" th:if="${#fields.hasErrors('customerEmail')}"
-         th:errors="*{customerEmail}">customer email</div>
+<!--    <label for="image">Enter image </label>
+    <input type="file" th:field="*{image}" id="image"/>
+    <div style="color:red" th:if="${#fields.hasErrors('image')}"
+         th:errors="*{image}">image</div>-->
     <br/>
 
     <input type="submit" value="Create!"/>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit author</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/author/{authorId}(authorId=${authorId})}"
+      th:object="${author}">
+    <label for="firstName">Enter name of author </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}"
+         th:errors="*{author}">first name error</div>
+    <br/>
+
+    <label for="lastName">Enter surname of author</label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{author}">last name error</div>
+    <br/>
+
+    <label for="email">Enter email of author</label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{author}">Name error</div>
+    <br/>
+    <input type="submit" value="Update!"/>
+</form>
+</body>
+</html>

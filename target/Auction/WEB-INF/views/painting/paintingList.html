@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All paintings</title>
+</head>
+<body>
+
+<div th:each="painting:${paintingList}">
+    <a th:href="@{/painting/{id}(id=${painting.getId()})}"
+       th:text="${painting.getTitle()}">title</a>
+
+    <p><i th:text="${painting.getAuthor().getFirstName()} + ' '
+        + ${painting.getAuthor().getLastName()}">author</i></p>
+
+    <!--<img th:src="@{pskov1.jpg}"/> ???????????????????????????????????????????-->
+
+    <p th:text="'HIGHEST OFFER ' + ${painting.getBestPrice()}"></p>
+    <br/>
+</div>
+
+<a th:href="@{/logout}">Log Out</a>
+</body>
+</html>

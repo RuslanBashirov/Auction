@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Author</title>
+</head>
+<body>
+<p th:text="${author.getFirstName()}">text</p>
+<p th:text="${author.getLastName()}">text</p>
+<p th:text="${author.getEmail()}">text</p>
+
+<div sec:authorize="hasRole('ADMIN')">
+<a th:href="@{/author/edit/{authorId}(authorId=${authorId})}">update author</a>
+<a th:href="@{/painting/new/{authorId}(authorId=${authorId})}">create painting</a>
+
+<form th:method="DELETE" th:action="@{/author/{authorId}(authorId=${authorId})}">
+    <input type="submit" value="delete"/>
+</form>
+
+</div>
+
+</body>
+</html>

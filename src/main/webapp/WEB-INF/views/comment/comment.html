@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment</title>
+</head>
+<body>
+
+<p th:text="${comment.getText()}">text</p>
+
+<div sec:authorize="hasRole('ADMIN')">
+    <a th:href="@{/comment/edit/{commentId}(commentId=${comment.getId()})}">UPDATE comment</a>
+
+    <form th:method="DELETE" th:action="@{/comment/{commentId}(commentId=${comment.getId()})}">
+        <input type="submit" value="delete"/>
+    </form>
+</div>
+
+</body>
+</html>

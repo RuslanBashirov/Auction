@@ -1,0 +1,21 @@
+create table author(
+  id            serial      primary key   not null,
+  first_name    varchar(20)               default null,
+  last_name     varchar(30)               default null,
+  email         varchar(50)               default null
+);
+create table painting(
+    id          serial      primary key    not null,
+    title        varchar(45)               default null unique ,
+    information  varchar(200)              default null,
+    image        bytea                     default null,
+    best_price   integer                   default null,
+    customer_email varchar(45)             default null,
+    author_id    integer                   not null references author(id)
+);
+create table comment(
+    id          serial      primary key    not null,
+    text        varchar(200)               default null,
+    painting_id integer                    not null references painting(id)
+);
+

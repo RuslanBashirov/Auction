@@ -2,14 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>index</title>
-    <link rel="stylesheet" th:href="@{/static/css/index.css}" />
+    <title>Welcome</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}" />
 </head>
+
 <body>
-<h2 th:text="'WELCOME TO THE ORIGINAL PAINTINGS SHOP'">text</h2>
-
-<a href="/painting/paintings"><p>WATCH ALL PAINTINGS</p></a>
-<a href="/author/authors"><p>WATCH ALL AUTHORS</p></a>
-
+<nav class="zone blue sticky">
+    <ul class="main-nav">
+        <li><a href="">About</a></li>
+        <li><a href="/painting/paintings">Paintings</a></li>
+        <li><a href="/author/authors">Authors</a></li>
+        <li class="push"><a href="">Contact</a></li>
+    </ul>
+</nav>
+<img class="cover" th:src="@{'/static/images/cover.jpg'}">
+<footer class="zone"><p>2021 No rights reserved, by the way I'm looking for developer vacancy</a></p></footer>
+</div>
 </body>
 </html>

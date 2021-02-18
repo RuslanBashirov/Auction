@@ -3,52 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${painting.getTitle()}">title</title>
-    <link rel="stylesheet" th:href="@{/static/css/paintingList.css}" />
+    <link rel="stylesheet" th:href="@{/static/css/painting.css}" />
 </head>
-
 <body>
-    <h2 th:text="${painting.getTitle()}">text</h2>
-    <p th:text="${painting.getInformation()}">text</p>
+<nav class="zone blue sticky">
+    <ul class="main-nav">
+        <li><a href="">About</a></li>
+        <li><a href="/painting/paintings">Paintings</a></li>
+        <li><a href="/author/authors">Authors</a></li>
+        <li class="push"><a href="">Contact</a></li>
+        <li class="push"><a href="">Contact</a></li>
+        <li class="push"><a href="">Contact</a></li>
+    </ul>
+</nav>
+<div class="container">
 
-    <p>
-        <i th:text="${painting.getAuthor().getFirstName()} + ' '
-            + ${painting.getAuthor().getLastName()}">author</i>
-    </p>
-
-    <img th:src="@{'/static/images/' + ${painting.getTitle().toLowerCase()} + '.jpg'}"/>
-
-    <p th:text="'HIGHEST OFFER ' + ${painting.getBestPrice()}">price</p>
-
-    <p>----------------Comments--------------------</p>
-        <ul>
-        <div th:each="comment:${commentList}">
-
-            <li><a th:href="@{/comment/{commentId}/{paintingId}(commentId=${comment.getId()},
-                    paintingId=${paintingId})}"
-               th:text="${comment.getText()}">comment</a>
-            </li>
-
+    <img class="cover" th:src="@{'/static/images/' + ${painting.getTitle().toLowerCase()} + '.jpg'}">
+    <div class="coverText"><h1 th:text="${painting.getTitle()}">painting name</h1></div>
+</div>
+<div class="zone blue grid-wrapper">
+    <div class="card zone">
+        <img th:src="@{'/static/images/authors/' + ${painting.getAuthor().getFirstName().toLowerCase()}+
+            ${painting.getAuthor().getLastName().toLowerCase()} + '.jpg'}">
+        <div class="text">
+            <h1>Author</h1>
+            <p th:text="${painting.getAuthor().getFirstName()} + ' '
+            + ${painting.getAuthor().getLastName()}">name and surname</p>
+            <button>Learn more</button>
         </div>
-        </ul>
-    <p>-------------------------------------------</p>
-
-    <div sec:authorize="hasRole('ADMIN')">
-        <a th:href="@{'/painting/edit/' + ${paintingId}}">UPDATE PAINTING</a>
-            <p>
-                <a th:href="@{'/comment/new/' + ${paintingId}}">ADD COMMENT</a>
-            </p>
-
-            <form th:method="DELETE" th:action="@{'/painting/' + ${paintingId}}">
-                <input type="submit" value="delete"/>
-            </form>
     </div>
-
-    <div sec:authorize="hasRole('USER')">
-        <p>
-            <a th:href="@{'/comment/new/' + ${paintingId}}">ADD COMMENT</a>
-        </p>
+    <div class="card zone"><img th:src="@{/static/images/bestPrice.jpg}">
+        <div class="text">
+            <h1>Best price</h1>
+            <p th:text="${painting.getBestPrice()}"></p>
+            <button>Learn more</button>
+        </div>
     </div>
-
+    <div class="card zone"><img th:src="@{/static/images/materials.jpg}">
+        <div class="text">
+            <h1>Size and materials</h1>
+            <p>25x35, oil, canvas</p>
+            <button>Learn more</button>
+        </div>
+    </div>
+</div>
+<footer class="zone"><p>2021 No rights reserved, I'm just looking for developer vacancy</a></p></footer>
+</div>
 </body>
-
 </html>

@@ -27,7 +27,7 @@ public class Author {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author",
+    @OneToMany(mappedBy = "author",
                 cascade = CascadeType.ALL)
     private List<Painting> paintings;
 

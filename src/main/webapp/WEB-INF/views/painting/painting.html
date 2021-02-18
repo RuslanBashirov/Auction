@@ -2,40 +2,52 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Painting</title>
+    <title th:text="${painting.getTitle()}">title</title>
+    <link rel="stylesheet" th:href="@{/static/css/paintingList.css}" />
 </head>
 
 <body>
-<p th:text="${painting.getTitle()}">text</p>
-<p th:text="${painting.getInformation()}">text</p>
+    <h2 th:text="${painting.getTitle()}">text</h2>
+    <p th:text="${painting.getInformation()}">text</p>
 
-<p><i th:text="${painting.getAuthor().getFirstName()} + ' '
-        + ${painting.getAuthor().getLastName()}">author</i></p>
+    <p>
+        <i th:text="${painting.getAuthor().getFirstName()} + ' '
+            + ${painting.getAuthor().getLastName()}">author</i>
+    </p>
 
-<p th:text="'HIGHEST OFFER ' + ${painting.getBestPrice()}"></p>
+    <img th:src="@{'/static/images/' + ${painting.getTitle().toLowerCase()} + '.jpg'}"/>
 
-<p>--------------Comments--------------------</p>
-    <div th:each="comment:${commentList}">
+    <p th:text="'HIGHEST OFFER ' + ${painting.getBestPrice()}">price</p>
 
-        <a th:href="@{/comment/{commentId}/{paintingId}(commentId=${comment.getId()},
-                paintingId=${painting.getId()})}"
-           th:text="${comment.getText()}">comment</a>
+    <p>----------------Comments--------------------</p>
+        <ul>
+        <div th:each="comment:${commentList}">
 
+            <li><a th:href="@{/comment/{commentId}/{paintingId}(commentId=${comment.getId()},
+                    paintingId=${paintingId})}"
+               th:text="${comment.getText()}">comment</a>
+            </li>
+
+        </div>
+        </ul>
+    <p>-------------------------------------------</p>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/painting/edit/' + ${paintingId}}">UPDATE PAINTING</a>
+            <p>
+                <a th:href="@{'/comment/new/' + ${paintingId}}">ADD COMMENT</a>
+            </p>
+
+            <form th:method="DELETE" th:action="@{'/painting/' + ${paintingId}}">
+                <input type="submit" value="delete"/>
+            </form>
     </div>
-<p>-------------------------------------------</p>
 
-<div sec:authorize="hasRole('ADMIN')">
-    <a th:href="@{/painting/edit/{paintingId}(paintingId=${painting.getId()})}">UPDATE PAINTING</a>
-        <p><a th:href="@{/comment/new/{paintingId}(paintingId=${painting.getId()})}">ADD COMMENT</a></p>
-
-        <form th:method="DELETE" th:action="@{/painting/{paintingId}(paintingId=${painting.getId()})}">
-            <input type="submit" value="delete"/>
-        </form>
-</div>
-
-<div sec:authorize="hasRole('USER')">
-    <p><a th:href="@{/comment/new/{paintingId}(paintingId=${painting.getId()})}">ADD COMMENT</a></p>
-</div>
+    <div sec:authorize="hasRole('USER')">
+        <p>
+            <a th:href="@{'/comment/new/' + ${paintingId}}">ADD COMMENT</a>
+        </p>
+    </div>
 
 </body>
 

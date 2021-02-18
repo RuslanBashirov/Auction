@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/comment/create/{paintingId}(paintingId=${paintingId})}" th:object="${newComment}">
+<form th:method="POST" th:action="@{'/comment/create/' + ${paintingId}}" th:object="${newComment}">
     <label for="text">Enter text of comment </label>
     <input type="text" th:field="*{text}" id="text"/>
     <div style="color:red" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Name error</div>

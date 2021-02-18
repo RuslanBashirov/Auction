@@ -15,8 +15,7 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
-                    CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "painting_id")
     private Painting painting;
 

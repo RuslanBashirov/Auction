@@ -29,9 +29,11 @@ public class PaintingController {
     @Transactional
     @GetMapping("/{paintingId}")
     public String getCertainPainting(Model model, @PathVariable int paintingId){
-        Painting painting = dao.getPainting(paintingId);
+        final Painting painting = dao.getPainting(paintingId);
         model.addAttribute("commentList", painting.getComments());
         model.addAttribute("painting", painting);
+        model.addAttribute("paintingId", paintingId);
+
         return "painting/painting";
     }
 
@@ -83,7 +85,7 @@ public class PaintingController {
 
     @Transactional
     @DeleteMapping("/{paintingName}")
-    public String deleteCertainPainting(@PathVariable("paintingName") int paintingName){
+    public String deleteCertainPainting(@PathVariable int paintingName){
         dao.delete(paintingName);
         return "redirect:/painting/paintings";
     }

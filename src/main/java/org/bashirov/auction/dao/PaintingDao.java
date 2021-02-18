@@ -49,12 +49,10 @@ public class PaintingDao {
         currentSession.update("painting", painting);
     }
 
-    public void delete(int paintingIdStr){
+    public void delete(int paintingId){
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Painting> theQuery = currentSession.createQuery("delete from Painting " +
-                "where id=:paintingId");
-        theQuery.setParameter("paintingId", paintingIdStr);
-        theQuery.executeUpdate();
+        Painting painting = this.getPainting(paintingId);
+        currentSession.remove(painting);
     }
 
     public Author getAuthor(int authorId){

@@ -24,12 +24,11 @@ public class Painting {
     @Column(name = "information")
     private String information;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @OneToMany(fetch = FetchType.EAGER,
-                mappedBy = "painting", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "painting", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @Column(name = "image")
@@ -84,6 +83,9 @@ public class Painting {
     }
 
     public List<Comment> getComments() {
+        for (int i = 0; i < comments.size(); i++) {
+            comments.get(i);
+        }
         return comments;
     }
 

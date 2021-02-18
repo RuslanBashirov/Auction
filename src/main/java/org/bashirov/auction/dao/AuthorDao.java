@@ -1,6 +1,7 @@
 package org.bashirov.auction.dao;
 
 import org.bashirov.auction.entity.Author;
+import org.bashirov.auction.entity.Painting;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -51,8 +52,7 @@ public class AuthorDao {
 
     public void delete(int authorId){
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Author> theQuery = currentSession.createQuery("delete from Author where id=:authorId");
-        theQuery.setParameter("authorId", authorId);
-        theQuery.executeUpdate();
+        Author author = this.getAuthor(authorId);
+        currentSession.remove(author);
     }
 }

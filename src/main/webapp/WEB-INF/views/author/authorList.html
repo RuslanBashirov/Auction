@@ -5,12 +5,20 @@
     <title>All authors</title>
 </head>
 <body>
-<div th:each="author : ${authorList}">
-    <a th:href="@{/author/{id}(id=${author.getId()})}" th:text="${author.getFirstName() +' '+ author.getLastName()}">user</a>
-</div>
+    <ul>
+        <div th:each="author : ${authorList}">
+            <li>
+                <a th:href="@{/author/{id}(id=${author.getId()})}"
+                   th:text="${author.getFirstName() +' '+ author.getLastName()}">user</a>
+            </li>
+        </div>
+    </ul>
 
-<div sec:authorize="hasRole('ADMIN')">
-<p><a href="/author/new">ADD NEW AUTHOR</a></p>
-</div>
+    <div sec:authorize="hasRole('ADMIN')">
+        <p>
+            <a href="/author/new">ADD NEW AUTHOR</a>
+        </p>
+    </div>
+
 </body>
 </html>

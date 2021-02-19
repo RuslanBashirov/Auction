@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -10,10 +10,14 @@
 <body>
 <nav class="zone blue sticky">
     <ul class="main-nav">
-        <li><a href="">About</a></li>
         <li><a href="/painting/paintings">Paintings</a></li>
         <li><a href="/author/authors">Authors</a></li>
-        <li class="push"><a href="">Contact</a></li>
+        <li class="push" sec:authorize="hasAnyRole('ADMIN', 'USER')">
+            <a th:href="@{/logout}">Log Out</a>
+        </li>
+        <li class="push" sec:authorize="!hasAnyRole('ADMIN', 'USER')">
+            <a th:href="@{/login}">Log in</a>
+        </li>
     </ul>
 </nav>
 
@@ -30,7 +34,6 @@
         </div>
     </div>
 </div>
-<footer class="zone"><a th:href="@{/logout}">Log Out</a><p>2021 No rights reserved, I'm just looking for developer vacancy</a></p></footer>
-</div>
+<footer class="zone"><p>2021 No rights reserved, by the way I'm looking for a developer vacancy</p></footer>
 </body>
 </html>

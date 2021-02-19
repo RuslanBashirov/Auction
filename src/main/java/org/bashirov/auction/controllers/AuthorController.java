@@ -2,6 +2,7 @@ package org.bashirov.auction.controllers;
 
 import org.bashirov.auction.entity.Author;
 import org.bashirov.auction.dao.AuthorDao;
+import org.bashirov.auction.entity.Painting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/author")
@@ -29,7 +31,8 @@ public class AuthorController {
     @GetMapping("/{authorId}")
     public String getCertainAuthorPage(Model model, @PathVariable int authorId){
         Author author = dao.getAuthor(authorId);
-
+        List<Painting> listOfPaintingsOfAuthor = author.getPaintings();
+        model.addAttribute("listOfPaintingsOfAuthor", listOfPaintingsOfAuthor);
         model.addAttribute("author", author);
         model.addAttribute("authorId", authorId);
         return "author/author";

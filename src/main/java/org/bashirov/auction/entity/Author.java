@@ -74,6 +74,7 @@ public class Author {
 
 
     public List<Painting> getPaintings() {
+        for (int i = 0; i < paintings.size(); i++) paintings.get(i);
         return paintings;
     }
 

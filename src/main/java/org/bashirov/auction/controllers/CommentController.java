@@ -20,9 +20,8 @@ public class CommentController {
     private CommentDao dao;
 
     @Transactional
-    @GetMapping("/{commentId}/{paintingId}")
-    public String getCertainCommentPage(Model model, @PathVariable int commentId,
-                        @PathVariable int paintingId){
+    @GetMapping("/{commentId}")
+    public String getCertainCommentPage(Model model, @PathVariable int commentId){
         model.addAttribute("comment", dao.getComment(commentId));
         return "comment/comment";
     }
